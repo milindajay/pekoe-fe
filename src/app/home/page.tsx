@@ -5,7 +5,7 @@ import { motion, useAnimation, useInView } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
-import { Facebook, Youtube, Linkedin, Eye, Target, Award, Sun, CloudRain, Wind, Mic, Scan, Users, UserPlus, ShieldCheck } from 'lucide-react'
+import { Facebook, Youtube, Linkedin, Eye, Target, Award, Sun, CloudRain, Mic, Scan, Users, UserPlus, ShieldCheck } from 'lucide-react'
 
 const GradientBorder = ({ children }: { children: React.ReactNode }) => (
     <motion.div
@@ -392,7 +392,7 @@ export default function HomePage() {
                                 <p className="text-gray-600 mb-4">Revolutionize your tea tasting process with our advanced voice-to-text recognition system, specifically designed to understand and transcribe tea industry terminology.</p>
                                 <div className="bg-gray-200 p-4 rounded-lg">
                                     <p className="text-sm font-medium">Sample Transcription:</p>
-                                    <p className="text-gray-700 italic">"The Darjeeling first flush exhibits a delicate muscatel flavor with hints of white grape and a clean, astringent finish..."</p>
+                                    <p className="text-gray-700 italic">&quot The Darjeeling first flush exhibits a delicate muscatel flavor with hints of white grape and a clean, astringent finish... &quot</p>
                                 </div>
                             </GradientBorder>
                         </div>
