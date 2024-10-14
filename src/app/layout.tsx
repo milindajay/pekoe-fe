@@ -11,14 +11,10 @@ export const metadata: Metadata = {
   description: 'Revolutionizing the tea industry with AI-powered grading technology',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={openSans.className}>{children}</body>
+    <html lang="en" className={openSans.className}>
+      <body>{children}</body>
     </html>
   )
 }

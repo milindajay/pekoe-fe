@@ -5,6 +5,7 @@ import { motion, useAnimation } from 'framer-motion'
 import Link from 'next/link'
 
 export default function LandingPage() {
+  console.log('LandingPage component is rendering');
   const controls = useAnimation()
   const logoRef = useRef<SVGSVGElement>(null)
 
@@ -17,7 +18,7 @@ export default function LandingPage() {
   }, [controls])
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black flex flex-col items-center justify-center p-4">
+    <div className="relative min-h-screen overflow-hidden bg-black flex flex-col items-center justify-center p-4 landing-page">
       {/* Animated gradient lines from bottom center to upper right corner */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(5)].map((_, i) => (
@@ -29,7 +30,7 @@ export default function LandingPage() {
               bottom: '0',
               background: 'linear-gradient(0deg, #8D4CC2, #009AFF, #00BB0C, transparent)',
               transform: 'rotate(-60deg)',
-              transformOrigin: 'bottom left',
+              transformOrigin: 'bottom center',
               animation: `moveGradientDiagonal 20s ${i * 2}s linear infinite`,
             }}
           />
@@ -48,11 +49,11 @@ export default function LandingPage() {
         <title id="pekoeLogoTitle">Pekoe Logo</title>
         <defs>
           <linearGradient id="b" x1="74.42" y1="178.15" x2="74.42" y2="15.13" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#8d4cc2"/>
-            <stop offset=".14" stopColor="#8052c7"/>
-            <stop offset=".4" stopColor="#6064d5"/>
-            <stop offset=".74" stopColor="#2c81eb"/>
-            <stop offset="1" stopColor="#009aff"/>
+            <stop offset="0" stopColor="#8d4cc2" />
+            <stop offset=".14" stopColor="#8052c7" />
+            <stop offset=".4" stopColor="#6064d5" />
+            <stop offset=".74" stopColor="#2c81eb" />
+            <stop offset="1" stopColor="#009aff" />
           </linearGradient>
         </defs>
         <motion.path
@@ -105,7 +106,7 @@ export default function LandingPage() {
           transition={{ duration: 2, ease: "easeInOut", delay: 3 }}
         />
         <motion.path
-          
+
           d="M633.14,54.49c10.1,0,18.78,2.08,26.01,6.25,7.24,4.17,12.8,10.07,16.69,17.72,3.89,7.65,5.84,16.8,5.84,27.45v12.9h-75.69c.27,10.99,3.23,19.46,8.86,25.4,5.63,5.94,13.54,8.91,23.71,8.91,7.24,0,13.74-.7,19.51-2.1,5.77-1.4,11.73-3.46,17.87-6.2v19.56c-5.67,2.66-11.44,4.61-17.31,5.84-5.87,1.23-12.9,1.84-21.1,1.84-11.13,0-20.91-2.17-29.34-6.5-8.43-4.34-15.02-10.8-19.77-19.41-4.75-8.6-7.12-19.29-7.12-32.06s2.15-23.49,6.45-32.36c4.3-8.87,10.34-15.63,18.13-20.28,7.78-4.64,16.86-6.96,27.24-6.96ZM633.14,72.62c-7.58,0-13.71,2.46-18.38,7.37-4.68,4.92-7.43,12.12-8.24,21.61h51.62c-.07-5.67-1.01-10.68-2.82-15.05-1.81-4.37-4.54-7.78-8.19-10.24-3.65-2.46-8.31-3.69-13.98-3.69Z"
           fill="#fff"
           initial={{ pathLength: 0, opacity: 0 }}
@@ -118,7 +119,7 @@ export default function LandingPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="text-4xl md:text-6xl font-semibold mb-4 text-center z-10 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-green-400 animate-gradient-x"
+        className="text-4xl md:text-6xl font-semibold mb-4 text-center z-10 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-green-400 animate-gradient-x landing-text"
         style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 600 }}
       >
         Where Tea Meets AI
