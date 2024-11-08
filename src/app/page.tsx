@@ -1,156 +1,548 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
-import { motion, useAnimation } from 'framer-motion'
+import React, { useEffect, useRef, useState } from 'react'
+import { motion, useAnimation, useInView } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
+// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, } from 'recharts'
+import { Facebook, Youtube, Linkedin, Eye, Target, Award, Sun, Mic, Users, UserPlus, ShieldCheck, ChartCandlestick, History, BadgeDollarSign, ChartNetwork, FileChartPie, Focus, GitCompareArrows, ListChecks } from 'lucide-react'
 
-export default function LandingPage() {
-  console.log('LandingPage component is rendering');
+const GradientBorder = ({ children }: { children: React.ReactNode }) => (
+  <motion.div
+    className="relative p-[2px] overflow-hidden rounded-lg bg-gradient-to-r from-purple-200 via-blue-200 to-green-200"
+    whileHover={{ scale: 1.03 }}
+    transition={{ duration: 0.5, ease: "easeInOut" }}
+  >
+    <div className="absolute inset-0 bg-gradient-to-r from-purple-200 via-blue-200 to-green-200 animate-gradient-x"></div>
+    <motion.div
+      className="relative bg-white rounded-lg p-6 h-full"
+      whileHover={{
+        background: "linear-gradient(to right, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1))",
+      }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
+      {children}
+    </motion.div>
+  </motion.div>
+)
+
+const AnimatedSection = ({ children }: { children: React.ReactNode }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
   const controls = useAnimation()
-  const logoRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
-    const animateLogo = async () => {
-      await controls.start({ opacity: 1, y: 0, transition: { duration: 1 } })
-      await controls.start({ scale: [1, 1.1, 1], transition: { duration: 2, times: [0, 0.5, 1] } })
+    if (isInView) {
+      controls.start('visible')
     }
-    animateLogo()
-  }, [controls])
+  }, [controls, isInView])
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black flex flex-col items-center justify-center p-4 landing-page">
-      {/* Animated gradient lines from bottom center to upper right corner */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute h-[200%] w-px"
-            style={{
-              left: `${i * 10}%`,
-              bottom: '0',
-              background: 'linear-gradient(0deg, #8D4CC2, #009AFF, #00BB0C, transparent)',
-              transform: 'rotate(-60deg)',
-              transformOrigin: 'bottom center',
-              animation: `moveGradientDiagonal 20s ${i * 2}s linear infinite`,
-            }}
-          />
-        ))}
-      </div>
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } }
+      }}
+    >
+      {children}
+    </motion.div>
+  )
+}
 
-      <motion.svg
-        ref={logoRef}
-        initial={{ opacity: 0, y: 50 }}
-        animate={controls}
-        className="w-64 h-auto mb-8 z-10"
-        viewBox="0 0 698.73 176.36"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-labelledby="pekoeLogoTitle"
-      >
-        <title id="pekoeLogoTitle">Pekoe Logo</title>
-        <defs>
-          <linearGradient id="b" x1="74.42" y1="178.15" x2="74.42" y2="15.13" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#8d4cc2" />
-            <stop offset=".14" stopColor="#8052c7" />
-            <stop offset=".4" stopColor="#6064d5" />
-            <stop offset=".74" stopColor="#2c81eb" />
-            <stop offset="1" stopColor="#009aff" />
-          </linearGradient>
-        </defs>
-        <motion.path
-          d="M77.1,162.67c24.01-15.43,37.08-44.75,30.48-74.17l-15.31-68.18c-5.89,1.49-11.43,3.71-16.53,6.53-.57.32-1.14.64-1.7.97-.57.33-1.13.68-1.68,1.03-5.07,3.18-9.65,6.97-13.69,11.25-.46.5-.92,1-1.37,1.5-.46.51-.91,1.03-1.35,1.55-13.51,16.14-19.65,38.17-14.69,60.25l14.73,65.59.23,1.02.06.28.21.96.08.34c.65-.17,1.31-.34,1.96-.53,1.84-.53,3.65-1.12,5.42-1.78.7-.26,1.38-.53,2.06-.81,3.91-1.61,7.6-3.55,11.08-5.78Z"
-          fill="url(#b)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeInOut" }}
-        />
-        <motion.path
-          d="M51.21,167.39l-12.78-42.56c-3.49-12.73-10.41-30.04-10.27-43.28-1.01-31.04,20.61-60.8,50.51-69.49.34.91,2.16,6.63,2.54,7.7,0,0-3.39,1.08-3.39,1.08l-1.88-6.1,2.16,1.11c-13.82,4.23-26.24,13.05-34.8,24.8-13.24,17.61-16.83,41.59-10.03,62.53,3.83,13.73,13.99,50.04,17.94,64.19h0Z"
-          fill="#00bb0c"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeInOut", delay: 0.5 }}
-        />
-        <motion.path
-          d="M45,160.89l-15.09-41.79c-4.18-12.52-12.04-29.42-12.62-42.65C14.58,45.51,34.53,14.61,63.92,4.3c.39.89,2.52,6.5,2.96,7.55,0,0-3.32,1.27-3.32,1.27l-2.21-5.99,2.22.99c-13.57,4.98-25.48,14.46-33.39,26.67-12.26,18.31-14.53,42.45-6.59,62.98,4.58,13.5,16.71,49.2,21.42,63.11h0Z"
-          fill="#00bb0c"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeInOut", delay: 1 }}
-        />
-        <motion.path
-          d="M177.96,20.28c19.32,0,33.42,3.96,42.3,11.88,8.87,7.92,13.31,19.02,13.31,33.29,0,6.49-1.01,12.65-3.02,18.49-2.01,5.84-5.31,10.99-9.88,15.46-4.58,4.47-10.6,8.01-18.08,10.6-7.48,2.6-16.68,3.89-27.6,3.89h-15.98v56.12h-24.58V20.28h43.53ZM176.33,40.66h-17.31v52.74h13.42c7.72,0,14.27-.9,19.66-2.71,5.39-1.81,9.49-4.69,12.29-8.65,2.8-3.96,4.2-9.18,4.2-15.67,0-8.67-2.61-15.12-7.83-19.36-5.22-4.23-13.37-6.35-24.43-6.35Z"
-          fill="#fff"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeInOut", delay: 1.5 }}
-        />
-        <motion.path
-          d="M295.6,54.49c10.1,0,18.78,2.08,26.01,6.25,7.24,4.17,12.8,10.07,16.69,17.72,3.89,7.65,5.84,16.8,5.84,27.45v12.9h-75.69c.27,10.99,3.23,19.46,8.86,25.4,5.63,5.94,13.54,8.91,23.71,8.91,7.24,0,13.74-.7,19.51-2.1,5.77-1.4,11.73-3.46,17.87-6.2v19.56c-5.67,2.66-11.44,4.61-17.31,5.84-5.87,1.23-12.9,1.84-21.1,1.84-11.13,0-20.91-2.17-29.34-6.5-8.43-4.34-15.02-10.8-19.77-19.41-4.75-8.6-7.12-19.29-7.12-32.06s2.15-23.49,6.45-32.36c4.3-8.87,10.34-15.63,18.13-20.28,7.78-4.64,16.86-6.96,27.24-6.96ZM295.6,72.62c-7.58,0-13.71,2.46-18.38,7.37-4.68,4.92-7.43,12.12-8.24,21.61h51.62c-.07-5.67-1.01-10.68-2.82-15.05-1.81-4.37-4.54-7.78-8.19-10.24-3.65-2.46-8.31-3.69-13.98-3.69Z"
-          fill="#fff"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeInOut", delay: 2 }}
-        />
-        <motion.path
-          d="M384.87,10.65v77.02c0,3.48-.14,7.29-.41,11.42-.27,4.13-.55,8.01-.82,11.62h.51c1.77-2.39,3.91-5.19,6.4-8.4,2.49-3.21,4.87-6.01,7.12-8.4l34.62-37.28h27.65l-45.37,48.75,48.34,64.62h-28.27l-36.26-49.77-13.52,11.57v38.2h-24.07V10.65h24.07Z"
-          fill="#fff"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeInOut", delay: 2.5 }}
-        />
-        <motion.path
-          d="M570.81,113.07c0,9.42-1.23,17.79-3.69,25.09-2.46,7.31-6.04,13.47-10.75,18.49-4.71,5.02-10.38,8.84-17,11.47-6.62,2.63-14.1,3.94-22.43,3.94-7.78,0-14.92-1.32-21.41-3.94-6.49-2.63-12.1-6.45-16.85-11.47-4.75-5.02-8.42-11.18-11.01-18.49-2.6-7.3-3.89-15.67-3.89-25.09,0-12.49,2.17-23.09,6.5-31.8,4.34-8.7,10.53-15.34,18.59-19.92,8.06-4.57,17.65-6.86,28.78-6.86,10.45,0,19.66,2.29,27.65,6.86,7.99,4.57,14.24,11.23,18.74,19.97,4.51,8.74,6.76,19.32,6.76,31.75ZM488.57,113.07c0,8.26,1.01,15.33,3.02,21.2,2.01,5.87,5.14,10.36,9.37,13.47,4.23,3.11,9.69,4.66,16.39,4.66s12.15-1.55,16.39-4.66c4.23-3.11,7.34-7.59,9.32-13.47,1.98-5.87,2.97-12.94,2.97-21.2s-.99-15.28-2.97-21.05c-1.98-5.77-5.09-10.17-9.32-13.21-4.23-3.04-9.73-4.56-16.49-4.56-9.97,0-17.24,3.35-21.81,10.04-4.57,6.69-6.86,16.28-6.86,28.78Z"
-          fill="#fff"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeInOut", delay: 3 }}
-        />
-        <motion.path
+const AnimatedIcon = ({ Icon }: { Icon: React.ElementType }) => (
+  <motion.div
+    className="text-4xl mb-4 text-green-500"
+    initial={{ scale: 0 }}
+    animate={{ scale: 1, rotate: 360 }}
+    transition={{ duration: 0.5, ease: "easeInOut" }}
+  >
+    <Icon size={48} />
+  </motion.div>
+)
 
-          d="M633.14,54.49c10.1,0,18.78,2.08,26.01,6.25,7.24,4.17,12.8,10.07,16.69,17.72,3.89,7.65,5.84,16.8,5.84,27.45v12.9h-75.69c.27,10.99,3.23,19.46,8.86,25.4,5.63,5.94,13.54,8.91,23.71,8.91,7.24,0,13.74-.7,19.51-2.1,5.77-1.4,11.73-3.46,17.87-6.2v19.56c-5.67,2.66-11.44,4.61-17.31,5.84-5.87,1.23-12.9,1.84-21.1,1.84-11.13,0-20.91-2.17-29.34-6.5-8.43-4.34-15.02-10.8-19.77-19.41-4.75-8.6-7.12-19.29-7.12-32.06s2.15-23.49,6.45-32.36c4.3-8.87,10.34-15.63,18.13-20.28,7.78-4.64,16.86-6.96,27.24-6.96ZM633.14,72.62c-7.58,0-13.71,2.46-18.38,7.37-4.68,4.92-7.43,12.12-8.24,21.61h51.62c-.07-5.67-1.01-10.68-2.82-15.05-1.81-4.37-4.54-7.78-8.19-10.24-3.65-2.46-8.31-3.69-13.98-3.69Z"
-          fill="#fff"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeInOut", delay: 3.5 }}
-        />
-      </motion.svg>
+const TeaScanAnimation = () => {
+  const [scanning, setScanning] = useState(true)
+  const [grade, setGrade] = useState('')
 
-      <motion.h1
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="text-4xl md:text-6xl font-semibold mb-4 text-center z-10 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-green-400 animate-gradient-x landing-text"
-        style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 600 }}
-      >
-        Where Tea Meets AI
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="text-xl md:text-2xl text-gray-300 mb-8 text-center max-w-2xl z-10"
-        style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 300 }}
-      >
-        Revolutionizing the tea industry with AI-powered grading technology
-      </motion.p>
+  useEffect(() => {
+    const scanInterval = setInterval(() => {
+      setScanning(true)
+      setGrade('')
+      setTimeout(() => {
+        setGrade('Premium Grade A')
+        setScanning(false)
+      }, 3000)
+    }, 6000)
+
+    return () => clearInterval(scanInterval)
+  }, [])
+
+  return (
+    <div className="relative w-full h-64 bg-gray-200 rounded-lg overflow-hidden">
+      <Image
+        src="/images/blacktea-sample.jpg"
+        alt="Tea Leaves Background"
+        layout="fill"
+        objectFit="cover"
+      />
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="flex flex-wrap justify-center gap-4 z-10"
+        className="absolute inset-0 bg-green-500 bg-opacity-50"
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: scanning ? 1 : 0 }}
+        transition={{ duration: 3, ease: "easeInOut" }}
+      />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <Image
+          src="/images/black-tea-sample.png"
+          alt="Tea Sample"
+          width={100}
+          height={100}
+          className="rounded-full border-green-500 border-2 bg-white"
+        />
+      </div>
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 bg-white p-4 text-center"
+        initial={{ y: '100%' }}
+        animate={{ y: grade ? '0%' : '100%' }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <Link href="/home" passHref>
-          <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white font-semibold rounded-full transition-all duration-500 ease-in-out transform hover:scale-105 hover:bg-gradient-to-br hover:shadow-lg hover:rotate-1">
-            Explore More
-          </button>
-        </Link>
+        <p className="text-lg font-semibold">Tea Grade: {grade}</p>
       </motion.div>
+    </div>
+  )
+}
+
+const AudioWaveform = () => {
+  const waveform = Array(20).fill(0).map(() => Math.random())
+
+  return (
+    <div className="flex items-center justify-center h-16 space-x-1">
+      {waveform.map((height, index) => (
+        <motion.div
+          key={index}
+          className="bg-green-500 w-1"
+          initial={{ height: 2 }}
+          animate={{
+            height: Math.max(height * 40, 2),
+            y: (height - 0.5) * 20
+          }}
+          transition={{
+            duration: 0.5,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            delay: index * 0.05
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// const AnimatedWeatherMap = () => {
+//   const [weatherState, setWeatherState] = useState('sunny')
+
+//   useEffect(() => {
+//     const weatherStates = ['sunny', 'cloudy', 'rainy']
+//     let currentIndex = 0
+
+//     const intervalId = setInterval(() => {
+//       currentIndex = (currentIndex + 1) % weatherStates.length
+//       setWeatherState(weatherStates[currentIndex])
+//     }, 3000)
+
+//     return () => clearInterval(intervalId)
+//   }, [])
+
+//   return (
+//     <div className="relative h-64 bg-blue-100 rounded-lg overflow-hidden">
+//       <Image
+//         src="/images/map.jpg"
+//         alt="Weather Map Background"
+//         layout="fill"
+//         objectFit="cover"
+//       />
+//       <div className="absolute inset-0 flex items-center justify-center">
+//         <motion.div
+//           className="absolute w-full h-full"
+//           animate={{
+//             backgroundColor: weatherState === 'sunny' ? 'rgba(135, 206, 235, 0.5)' :
+//               weatherState === 'cloudy' ? 'rgba(184, 184, 184, 0.5)' : 'rgba(70, 130, 180, 0.5)'
+//           }}
+//           transition={{ duration: 1 }}
+//         />
+//         <motion.div
+//           className="absolute"
+//           animate={{
+//             y: weatherState === 'sunny' ? -20 : 0,
+//             opacity: weatherState === 'rainy' ? 0 : 1
+//           }}
+//           transition={{ duration: 1 }}
+//         >
+//           <Sun className="text-yellow-500" size={48} />
+//         </motion.div>
+//         <motion.div
+//           className="absolute"
+//           animate={{
+//             scale: weatherState === 'cloudy' ? 1 : 0.5,
+//             opacity: weatherState === 'sunny' ? 0 : 1
+//           }}
+//           transition={{ duration: 1 }}
+//         >
+//           <CloudRain className="text-gray-500" size={48} />
+//         </motion.div>
+//         {weatherState === 'rainy' && (
+//           <motion.div
+//             className="absolute top-1/2 left-0 w-full"
+//             initial={{ y: -100 }}
+//             animate={{ y: 100 }}
+//             transition={{ duration: 1, repeat: Infinity, repeatType: 'loop' }}
+//           >
+//             {[...Array(10)].map((_, i) => (
+//               <motion.div
+//                 key={i}
+//                 className="absolute bg-blue-500 w-0.5 h-4"
+//                 style={{ left: `${i * 10}%` }}
+//                 animate={{ y: [0, 20] }}
+//                 transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse', delay: i * 0.1 }}
+//               />
+//             ))}
+//           </motion.div>
+//         )}
+//       </div>
+//     </div>
+//   )
+// }
+
+// const priceData = [
+//   { name: 'Jan', price: 4000 },
+//   { name: 'Feb', price: 3000 },
+//   { name: 'Mar', price: 5000 },
+//   { name: 'Apr', price: 4500 },
+//   { name: 'May', price: 6000 },
+//   { name: 'Jun', price: 5500 },
+// ]
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-800">
+      {/* Header */}
+      {/* <header className="bg-green-500 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
+          <p>Level 3, 235/4 Old Avissawella Road, Colombo, Sri Lanka | +94 11 2 345 678</p>
+          <div className="flex space-x-4">
+            <Link href="#"><Facebook size={20} /></Link>
+            <Link href="#"><Youtube size={20} /></Link>
+            <Link href="#"><Linkedin size={20} /></Link>
+          </div>
+        </div>
+      </header> */}
+
+      {/* Navigation */}
+      <nav className="bg-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Link href="/" className="flex-shrink-0">
+                <Image src="/images/TeaAI-DARK.svg" alt="Pekoe Logo" width={120} height={100} />
+              </Link>
+              <div className="ml-10 flex items-baseline space-x-4">
+                <Link href="/" className="px-3 py-2 rounded-md text-sm font-medium text-green-600">Home</Link>
+                <Link href="/who-we-are" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">Who We Are</Link>
+                <Link href="/solutions" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">Solutions</Link>
+                <Link href="/reach-us" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">Reach Us</Link>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <Link href="/get-started" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
+                Get Started
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="pt-20 pb-12 bg-gradient-to-br from-purple-100 via-blue-100 to-green-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <motion.h1
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-4xl font-bold text-gray-900 mb-4"
+              >
+                Empowering Tea Traders with Advanced AI & Technology
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-xl text-gray-600 mb-6"
+              >
+                Empowering the tea industry with AI-driven tools and technologies to optimize operations, enhance quality, and drive sustainable growth
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <Link href="/solutions" className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium py-2 px-6 rounded-full text-base transition-all duration-500 ease-in-out hover:from-blue-600 hover:to-purple-600">
+                  Tell Me More
+                </Link>
+              </motion.div>
+            </div>
+            <div className="relative h-64 md:h-96">
+              <TeaScanAnimation />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who We Are Section */}
+      <AnimatedSection>
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Who We Are</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              <div>
+                <Image src="/images/team-teaai.jpg" alt="Pekoe Team" width={500} height={300} className="rounded-lg shadow-lg" />
+              </div>
+              <GradientBorder>
+                <p className="text-xl text-gray-600">
+                  We aim  to revolutionize the Tea Industry with AI and other cutting-edge technologies. We understand the challenges and committed to finding solutions that will make the industry more efficient, productive, and profitable.                </p>
+              </GradientBorder>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <GradientBorder>
+                <AnimatedIcon Icon={Eye} />
+                <h3 className="text-xl font-semibold mb-2">Our Vision</h3>
+                <p className="text-gray-600">To lead the global transformation of the tea industry through AI, Technology, and Innovation.</p>
+              </GradientBorder>
+              <GradientBorder>
+                <AnimatedIcon Icon={Target} />
+                <h3 className="text-xl  font-semibold mb-2">Our Mission</h3>
+                <p className="text-gray-600">To empower tea stakeholders with innovative AI-driven tools and technologies, enabling them to optimize operations, enhance quality, and unlock new possibilities.</p>
+              </GradientBorder>
+              <GradientBorder>
+                <AnimatedIcon Icon={Award} />
+                <h3 className="text-xl font-semibold mb-2">Our Values</h3>
+                <p className="text-gray-600">Innovation, Quality, Sustainability, Transparency, Empathy & Collaborattion</p>
+              </GradientBorder>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* TeaBrain AI Section */}
+      <AnimatedSection>
+        <section className="py-20 bg-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Discover TeaAI™</h2>
+
+            {/* Tea Mate */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-semibold mb-6">TeaMate: Visualize the Entire Sri Lankan Tea Lanscape </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <GradientBorder>
+                  <AnimatedIcon Icon={ChartCandlestick} />
+                  <h4 className="text-xl font-semibold mb-4">Competitor Analysis</h4>
+                  <p className="text-gray-600">TeaAI™&apos;s Competitor Analysis reveals market trends in tea quantity and pricing, tracks competitors&apos; behaviors, analyzes market share, and helps you find growth opportunities for data-driven strategy. </p>
+                </GradientBorder>
+                <GradientBorder>
+                  <AnimatedIcon Icon={Sun} />
+                  <h4 className="text-xl font-semibold mb-4">Weather Analytics</h4>
+                  <p className="text-gray-600">TeaAI™&apos;s Weather Analytics provides a detailed weather map and dynamic chart, offering data for specific factories and tracking weather changes over time to optimize decision-making.</p>
+                </GradientBorder>
+                <GradientBorder>
+                  <AnimatedIcon Icon={History} />
+                  <h4 className="text-xl font-semibold mb-4">Price History</h4>
+                  <p className="text-gray-600">TeaAI™&apos;s Price History Analysis allows the tea traders to track prices of required tea grades in given regions or garden marks paving way for better buying and selling decisions.</p>
+                </GradientBorder>
+                <GradientBorder>
+                  <AnimatedIcon Icon={ChartNetwork} />
+                  <h4 className="text-xl font-semibold mb-4">Price Heat Map</h4>
+                  <p className="text-gray-600">TeaAI™&apos;s Price Heat Map provides a geographical overview of Sri Lankan tea prices and how the price hotspots change geographically with time.</p>
+                </GradientBorder>
+                <GradientBorder>
+                  <AnimatedIcon Icon={BadgeDollarSign} />
+                  <h4 className="text-xl font-semibold mb-4">Exchange Rates</h4>
+                  <p className="text-gray-600">TeaAI™&apos;s Exchange Rates provide a overview of key main exchange rates related to the Tea Trade without having to search online</p>
+                </GradientBorder>
+                <GradientBorder>
+                  <AnimatedIcon Icon={FileChartPie} />
+                  <h4 className="text-xl font-semibold mb-4">Export Market Reports</h4>
+                  <p className="text-gray-600">TeaAI™&apos;s Export Market Reports allows the traders to download the publicly released Weekly Broker Market Reports from a central location.</p>
+                </GradientBorder>
+              </div>
+              {/* <div className="mt-8">
+                <GradientBorder>
+                  <h4 className="text-xl font-semibold mb-4">Price History and Heat Map</h4>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <LineChart data={priceData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Line type="monotone" dataKey="price" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </GradientBorder>
+              </div> */}
+            </div>
+
+            {/* TeaTalk */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-semibold mb-6">TeaTalk: AI-Powered Voice Recognition for Tea Tasting</h3>
+              <GradientBorder>
+                <div className="flex items-center mb-4">
+                  <AnimatedIcon Icon={Mic} />
+                  <div className="ml-4 flex-grow">
+                    <AudioWaveform />
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-4">Revolutionize your tea tasting process with our advanced voice-to-text recognition system, specifically designed to understand and transcribe tea industry terminology.</p>
+                <div className="bg-gray-200 p-4 rounded-lg">
+                  <p className="text-sm font-medium">Sample Transcription:</p>
+                  <p className="text-gray-700 italic">&quot The Darjeeling first flush exhibits a delicate muscatel flavor with hints of white grape and a clean, astringent finish... &quot</p>
+                </div>
+              </GradientBorder>
+            </div>
+
+            {/* TeaRetina */}
+            <div>
+              <h3 className="text-2xl font-semibold mb-6">TeaRetina: AI-Based Tea Visual Grading</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <GradientBorder>
+                  <AnimatedIcon Icon={Focus} />
+                  <h4 className="text-xl font-semibold mb-4">Capture Standards</h4>
+                  <p className="text-gray-600">TeaRetina allows you to scan and digitize your tea standards to be matched with auction samples. TeaAI™ has absolutely no access to your standards thanks to our industry leading privacy architecture.</p>
+                </GradientBorder>
+                <GradientBorder>
+                  <AnimatedIcon Icon={ListChecks} />
+                  <h4 className="text-xl font-semibold mb-4">Manage Standards</h4>
+                  <p className="text-gray-600">TeaRetina allows you to easily manage and update your tea grading standards, enabling quick edits or deletions of captured standards to keep your quality criteria current and well-organized.</p>
+                </GradientBorder>
+                <GradientBorder>
+                  <AnimatedIcon Icon={GitCompareArrows} />
+                  <h4 className="text-xl font-semibold mb-4">Match Standards</h4>
+                  <p className="text-gray-600">TeaRetina&apos;s State-of-the-Art AI system allows tea traders to match all of the scanned standards with all 10,000+ weekly auction samples with a simple button click. It&apos;s an Absolute Game Changer!!!</p>
+                </GradientBorder>
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* User Management Section */}
+      <AnimatedSection>
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Comprehensive User Management</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <GradientBorder>
+                <AnimatedIcon Icon={Users} />
+                <h3 className="text-xl font-semibold mb-4">User Accounts</h3>
+                <p className="text-gray-600">Create and manage individual user accounts for your team members.</p>
+              </GradientBorder>
+              <GradientBorder>
+                <AnimatedIcon Icon={ShieldCheck} />
+                <h3 className="text-xl font-semibold mb-4">Role-Based Access</h3>
+                <p className="text-gray-600">Assign roles and permissions to ensure proper access control within your organization.</p>
+              </GradientBorder>
+              <GradientBorder>
+                <AnimatedIcon Icon={UserPlus} />
+                <h3 className="text-xl font-semibold mb-4">Easy Registration</h3>
+                <p className="text-gray-600">Streamlined registration process for quick onboarding of new users.</p>
+              </GradientBorder>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* Call to Action Section */}
+      <AnimatedSection>
+        <section className="py-20 bg-gradient-to-r from-purple-100 to-blue-100">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Contact TeaAI™</h2>
+            <p className="text-xl text-center text-gray-600 mb-8">We are always ready to answer any question you may have. Let&apos;s explore how to elevate your business.</p>
+            <form className="max-w-lg mx-auto">
+              <div className="mb-4">
+                <input type="text" placeholder="Name" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+              <div className="mb-4">
+                <input type="email" placeholder="Email" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+              <div className="mb-4">
+                <textarea placeholder="Message" rows={4} className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+              </div>
+              <div className="text-center">
+                <button type="submit" className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium py-2 px-6 rounded-full text-base transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                  Request a Demo
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* Footer */}
+      <footer className="bg-green-500 text-white py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Follow us</h3>
+              <div className="flex space-x-4">
+                <Link href="#"><Facebook /></Link>
+                <Link href="#"><Youtube /></Link>
+                <Link href="#"><Linkedin /></Link>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Site Map</h3>
+              <ul className="space-y-2">
+                <li><Link href="/">Home</Link></li>
+                <li><Link href="/who-we-are">Who We Are</Link></li>
+                <li><Link href="/solutions">Solutions</Link></li>
+                <li><Link href="/technology">Technology</Link></li>
+                <li><Link href="/reach-us">Reach Us</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Products</h3>
+              <ul className="space-y-2">
+                <li><Link href="/products/tea-retina">TeaRetina™</Link></li>
+                <li><Link href="/products/tea-fence">TeaFence™</Link></li>
+              </ul>
+            </div>
+          </div>
+          {/* <div className="mt-8">
+                        <h3 className="text-lg font-semibold mb-4">Get in Touch with Updates and News</h3>
+                        <form className="flex">
+                            <input type="email" placeholder="Email" className="flex-grow px-4 py-2 rounded-l-md focus:outline-none" />
+                            <input type="text" placeholder="Name" className="px-4 py-2 focus:outline-none" />
+                            <button type="submit" className="bg-white text-green-500 px-4 py-2 rounded-r-md font-medium hover:bg-gray-100 transition-colors">Sign Up</button>
+                        </form>
+                        <p className="mt-2 text-sm">By signing up you will be accepting Pekoe's Terms and Conditions and acknowledge that my information will be used in accordance with Pekoe's Privacy Policy</p>
+                    </div> */}
+          <div className="mt-8 pt-8 border-t border-green-400">
+            <div className="flex justify-between items-center">
+              <Image src="/images/TeaAI-WHITE.svg" alt="Pekoe Logo" width={150} height={40} />
+              <div className="text-sm">
+                <Link href="/privacy-policy" className="mr-4">Privacy Policy</Link>
+                <Link href="/cookie-policy" className="mr-4">Cookie Policy</Link>
+                <Link href="/terms-of-use">Terms of Use</Link>
+              </div>
+            </div>
+            <p className="mt-4 text-sm text-center">Copyright © 2024 Pekoe. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
 
       <style jsx>{`
-        @keyframes moveGradientDiagonal {
-          0% { transform: rotate(-60deg) translateY(0); }
-          100% { transform: rotate(-60deg) translateY(-100%); }
-        }
         @keyframes gradientAnimation {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }

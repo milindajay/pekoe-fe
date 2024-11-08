@@ -2,12 +2,12 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
 
-const openSans = Open_Sans({ 
+const openSans = Open_Sans({
   subsets: ['latin']
 })
 
 export const metadata: Metadata = {
-  title: 'Pekoe - Where Tea Meets AI',
+  title: 'TeaAI - Where Tea Meets AI',
   description: 'Revolutionizing the tea industry with AI-powered grading technology',
 }
 
