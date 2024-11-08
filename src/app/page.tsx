@@ -246,7 +246,7 @@ export default function HomePage() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link href="/" className="flex-shrink-0">
-                <Image src="/images/TeaAI-DARK.svg" alt="Pekoe Logo" width={120} height={100} />
+                <Image src="/images/TEAAI-DARK.svg" alt="Pekoe Logo" width={120} height={100} />
               </Link>
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link href="/" className="px-3 py-2 rounded-md text-sm font-medium text-green-600">Home</Link>
@@ -530,7 +530,7 @@ export default function HomePage() {
                     </div> */}
           <div className="mt-8 pt-8 border-t border-green-400">
             <div className="flex justify-between items-center">
-              <Image src="/images/TeaAI-WHITE.svg" alt="Pekoe Logo" width={150} height={40} />
+              <Image src="/images/TEAAI-WHITE.svg" alt="Pekoe Logo" width={150} height={40} />
               <div className="text-sm">
                 <Link href="/privacy-policy" className="mr-4">Privacy Policy</Link>
                 <Link href="/cookie-policy" className="mr-4">Cookie Policy</Link>
