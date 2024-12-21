@@ -7,6 +7,7 @@ import Image from 'next/image'
 // import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, } from 'recharts'
 import { Eye, Target, Award, Sun, Mic, Users, UserPlus, ShieldCheck, ChartCandlestick, History, BadgeDollarSign, ChartNetwork, FileChartPie, Focus, GitCompareArrows, ListChecks } from 'lucide-react'
 import TeaRetinaAnimation from './components/TeaRetinaAnimation'
+import { TeaFenceAnimation } from './components/TeaFenceAnimation'
 
 const GradientBorder = ({ children }: { children: React.ReactNode }) => (
   <motion.div
@@ -239,7 +240,7 @@ export default function HomePage() {
             </div>
 
             {/* TeaRetina */}
-            <div>
+            <div className='mb-16'>
               <h3 className="text-2xl font-semibold mb-6">TeaRetina: AI-Based Tea Visual Grading</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <GradientBorder>
@@ -257,6 +258,14 @@ export default function HomePage() {
                   <h4 className="text-xl font-semibold mb-4">Match Standards</h4>
                   <p className="text-gray-600">TeaRetina&apos;s State-of-the-Art AI system allows tea traders to match all of the scanned standards with all 10,000+ weekly auction samples with a simple button click. It&apos;s an Absolute Game Changer!!!</p>
                 </GradientBorder>
+              </div>
+            </div>
+
+            {/* TeaFence */}
+            <div>
+              <h3 className="text-2xl font-semibold mb-6">TeaFence: Industry Leading Customer Data Privacy</h3>
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <TeaFenceAnimation />
               </div>
             </div>
           </div>
