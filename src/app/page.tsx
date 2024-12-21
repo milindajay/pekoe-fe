@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 // import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, } from 'recharts'
 import { Facebook, Youtube, Linkedin, Eye, Target, Award, Sun, Mic, Users, UserPlus, ShieldCheck, ChartCandlestick, History, BadgeDollarSign, ChartNetwork, FileChartPie, Focus, GitCompareArrows, ListChecks } from 'lucide-react'
+import TeaRetinaAnimation from './components/TeaRetinaAnimation'
 
 const GradientBorder = ({ children }: { children: React.ReactNode }) => (
   <motion.div
@@ -63,57 +64,57 @@ const AnimatedIcon = ({ Icon }: { Icon: React.ElementType }) => (
   </motion.div>
 )
 
-const TeaScanAnimation = () => {
-  const [scanning, setScanning] = useState(true)
-  const [grade, setGrade] = useState('')
+// const TeaScanAnimation = () => {
+//   const [scanning, setScanning] = useState(true)
+//   const [grade, setGrade] = useState('')
 
-  useEffect(() => {
-    const scanInterval = setInterval(() => {
-      setScanning(true)
-      setGrade('')
-      setTimeout(() => {
-        setGrade('Premium Grade A')
-        setScanning(false)
-      }, 3000)
-    }, 6000)
+//   useEffect(() => {
+//     const scanInterval = setInterval(() => {
+//       setScanning(true)
+//       setGrade('')
+//       setTimeout(() => {
+//         setGrade('Premium Grade A')
+//         setScanning(false)
+//       }, 3000)
+//     }, 6000)
 
-    return () => clearInterval(scanInterval)
-  }, [])
+//     return () => clearInterval(scanInterval)
+//   }, [])
 
-  return (
-    <div className="relative w-full h-64 bg-gray-200 rounded-lg overflow-hidden">
-      <Image
-        src="/images/blacktea-sample.jpg"
-        alt="Tea Leaves Background"
-        layout="fill"
-        objectFit="cover"
-      />
-      <motion.div
-        className="absolute inset-0 bg-green-500 bg-opacity-50"
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: scanning ? 1 : 0 }}
-        transition={{ duration: 3, ease: "easeInOut" }}
-      />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <Image
-          src="/images/black-tea-sample.png"
-          alt="Tea Sample"
-          width={100}
-          height={100}
-          className="rounded-full border-green-500 border-2 bg-white"
-        />
-      </div>
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 bg-white p-4 text-center"
-        initial={{ y: '100%' }}
-        animate={{ y: grade ? '0%' : '100%' }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
-      >
-        <p className="text-lg font-semibold">Tea Grade: {grade}</p>
-      </motion.div>
-    </div>
-  )
-}
+//   return (
+//     <div className="relative w-full h-64 bg-gray-200 rounded-lg overflow-hidden">
+//       <Image
+//         src="/images/blacktea-sample.jpg"
+//         alt="Tea Leaves Background"
+//         layout="fill"
+//         objectFit="cover"
+//       />
+//       <motion.div
+//         className="absolute inset-0 bg-green-500 bg-opacity-50"
+//         initial={{ scaleY: 0 }}
+//         animate={{ scaleY: scanning ? 1 : 0 }}
+//         transition={{ duration: 3, ease: "easeInOut" }}
+//       />
+//       <div className="absolute inset-0 flex items-center justify-center">
+//         <Image
+//           src="/images/black-tea-sample.png"
+//           alt="Tea Sample"
+//           width={100}
+//           height={100}
+//           className="rounded-full border-green-500 border-2 bg-white"
+//         />
+//       </div>
+//       <motion.div
+//         className="absolute bottom-0 left-0 right-0 bg-white p-4 text-center"
+//         initial={{ y: '100%' }}
+//         animate={{ y: grade ? '0%' : '100%' }}
+//         transition={{ duration: 0.5, ease: "easeInOut" }}
+//       >
+//         <p className="text-lg font-semibold">Tea Grade: {grade}</p>
+//       </motion.div>
+//     </div>
+//   )
+// }
 
 const AudioWaveform = () => {
   const waveform = Array(20).fill(0).map(() => Math.random())
@@ -296,7 +297,7 @@ export default function HomePage() {
               </motion.div>
             </div>
             <div className="relative h-64 md:h-96">
-              <TeaScanAnimation />
+              <TeaRetinaAnimation />
             </div>
           </div>
         </div>
@@ -312,8 +313,9 @@ export default function HomePage() {
                 <Image src="/images/team-teaai.jpg" alt="Pekoe Team" width={500} height={300} className="rounded-lg shadow-lg" />
               </div>
               <GradientBorder>
-                <p className="text-xl text-gray-600">
-                  We aim  to revolutionize the Tea Industry with AI and other cutting-edge technologies. We understand the challenges and committed to finding solutions that will make the industry more efficient, productive, and profitable.                </p>
+                <p className="text-xl text-gray-600 text-center">
+                  We aim  to revolutionize the Tea Industry with AI and other cutting-edge technologies. We understand the challenges and committed to finding solutions that will make the industry more efficient, productive, and profitable.
+                </p>
               </GradientBorder>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

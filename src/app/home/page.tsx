@@ -301,7 +301,6 @@ export default function HomePage() {
                     </div>
                 </div>
             </section>
-
             {/* Who We Are Section */}
             <AnimatedSection>
                 <section className="py-20">
