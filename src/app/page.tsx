@@ -5,7 +5,7 @@ import { motion, useAnimation, useInView } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 // import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, } from 'recharts'
-import { Facebook, Youtube, Linkedin, Eye, Target, Award, Sun, Mic, Users, UserPlus, ShieldCheck, ChartCandlestick, History, BadgeDollarSign, ChartNetwork, FileChartPie, Focus, GitCompareArrows, ListChecks } from 'lucide-react'
+import { Eye, Target, Award, Sun, Mic, Users, UserPlus, ShieldCheck, ChartCandlestick, History, BadgeDollarSign, ChartNetwork, FileChartPie, Focus, GitCompareArrows, ListChecks } from 'lucide-react'
 import TeaRetinaAnimation from './components/TeaRetinaAnimation'
 
 const GradientBorder = ({ children }: { children: React.ReactNode }) => (
@@ -64,58 +64,6 @@ const AnimatedIcon = ({ Icon }: { Icon: React.ElementType }) => (
   </motion.div>
 )
 
-// const TeaScanAnimation = () => {
-//   const [scanning, setScanning] = useState(true)
-//   const [grade, setGrade] = useState('')
-
-//   useEffect(() => {
-//     const scanInterval = setInterval(() => {
-//       setScanning(true)
-//       setGrade('')
-//       setTimeout(() => {
-//         setGrade('Premium Grade A')
-//         setScanning(false)
-//       }, 3000)
-//     }, 6000)
-
-//     return () => clearInterval(scanInterval)
-//   }, [])
-
-//   return (
-//     <div className="relative w-full h-64 bg-gray-200 rounded-lg overflow-hidden">
-//       <Image
-//         src="/images/blacktea-sample.jpg"
-//         alt="Tea Leaves Background"
-//         layout="fill"
-//         objectFit="cover"
-//       />
-//       <motion.div
-//         className="absolute inset-0 bg-green-500 bg-opacity-50"
-//         initial={{ scaleY: 0 }}
-//         animate={{ scaleY: scanning ? 1 : 0 }}
-//         transition={{ duration: 3, ease: "easeInOut" }}
-//       />
-//       <div className="absolute inset-0 flex items-center justify-center">
-//         <Image
-//           src="/images/black-tea-sample.png"
-//           alt="Tea Sample"
-//           width={100}
-//           height={100}
-//           className="rounded-full border-green-500 border-2 bg-white"
-//         />
-//       </div>
-//       <motion.div
-//         className="absolute bottom-0 left-0 right-0 bg-white p-4 text-center"
-//         initial={{ y: '100%' }}
-//         animate={{ y: grade ? '0%' : '100%' }}
-//         transition={{ duration: 0.5, ease: "easeInOut" }}
-//       >
-//         <p className="text-lg font-semibold">Tea Grade: {grade}</p>
-//       </motion.div>
-//     </div>
-//   )
-// }
-
 const AudioWaveform = () => {
   const waveform = Array(20).fill(0).map(() => Math.random())
 
@@ -142,128 +90,10 @@ const AudioWaveform = () => {
   )
 }
 
-// const AnimatedWeatherMap = () => {
-//   const [weatherState, setWeatherState] = useState('sunny')
-
-//   useEffect(() => {
-//     const weatherStates = ['sunny', 'cloudy', 'rainy']
-//     let currentIndex = 0
-
-//     const intervalId = setInterval(() => {
-//       currentIndex = (currentIndex + 1) % weatherStates.length
-//       setWeatherState(weatherStates[currentIndex])
-//     }, 3000)
-
-//     return () => clearInterval(intervalId)
-//   }, [])
-
-//   return (
-//     <div className="relative h-64 bg-blue-100 rounded-lg overflow-hidden">
-//       <Image
-//         src="/images/map.jpg"
-//         alt="Weather Map Background"
-//         layout="fill"
-//         objectFit="cover"
-//       />
-//       <div className="absolute inset-0 flex items-center justify-center">
-//         <motion.div
-//           className="absolute w-full h-full"
-//           animate={{
-//             backgroundColor: weatherState === 'sunny' ? 'rgba(135, 206, 235, 0.5)' :
-//               weatherState === 'cloudy' ? 'rgba(184, 184, 184, 0.5)' : 'rgba(70, 130, 180, 0.5)'
-//           }}
-//           transition={{ duration: 1 }}
-//         />
-//         <motion.div
-//           className="absolute"
-//           animate={{
-//             y: weatherState === 'sunny' ? -20 : 0,
-//             opacity: weatherState === 'rainy' ? 0 : 1
-//           }}
-//           transition={{ duration: 1 }}
-//         >
-//           <Sun className="text-yellow-500" size={48} />
-//         </motion.div>
-//         <motion.div
-//           className="absolute"
-//           animate={{
-//             scale: weatherState === 'cloudy' ? 1 : 0.5,
-//             opacity: weatherState === 'sunny' ? 0 : 1
-//           }}
-//           transition={{ duration: 1 }}
-//         >
-//           <CloudRain className="text-gray-500" size={48} />
-//         </motion.div>
-//         {weatherState === 'rainy' && (
-//           <motion.div
-//             className="absolute top-1/2 left-0 w-full"
-//             initial={{ y: -100 }}
-//             animate={{ y: 100 }}
-//             transition={{ duration: 1, repeat: Infinity, repeatType: 'loop' }}
-//           >
-//             {[...Array(10)].map((_, i) => (
-//               <motion.div
-//                 key={i}
-//                 className="absolute bg-blue-500 w-0.5 h-4"
-//                 style={{ left: `${i * 10}%` }}
-//                 animate={{ y: [0, 20] }}
-//                 transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse', delay: i * 0.1 }}
-//               />
-//             ))}
-//           </motion.div>
-//         )}
-//       </div>
-//     </div>
-//   )
-// }
-
-// const priceData = [
-//   { name: 'Jan', price: 4000 },
-//   { name: 'Feb', price: 3000 },
-//   { name: 'Mar', price: 5000 },
-//   { name: 'Apr', price: 4500 },
-//   { name: 'May', price: 6000 },
-//   { name: 'Jun', price: 5500 },
-// ]
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
-      {/* Header */}
-      {/* <header className="bg-green-500 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
-          <p>Level 3, 235/4 Old Avissawella Road, Colombo, Sri Lanka | +94 11 2 345 678</p>
-          <div className="flex space-x-4">
-            <Link href="#"><Facebook size={20} /></Link>
-            <Link href="#"><Youtube size={20} /></Link>
-            <Link href="#"><Linkedin size={20} /></Link>
-          </div>
-        </div>
-      </header> */}
-
-      {/* Navigation */}
-      <nav className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <Link href="/" className="flex-shrink-0">
-                <Image src="/images/TEAAI-DARK.svg" alt="Pekoe Logo" width={120} height={100} />
-              </Link>
-              <div className="ml-10 flex items-baseline space-x-4">
-                <Link href="/" className="px-3 py-2 rounded-md text-sm font-medium text-green-600">Home</Link>
-                <Link href="/who-we-are" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">Who We Are</Link>
-                <Link href="/solutions" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">Solutions</Link>
-                <Link href="/reach-us" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">Reach Us</Link>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <Link href="/get-started" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
-                Get Started
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
 
       {/* Hero Section */}
       <section className="pt-20 pb-12 bg-gradient-to-br from-purple-100 via-blue-100 to-green-100">
@@ -296,7 +126,7 @@ export default function HomePage() {
                 </Link>
               </motion.div>
             </div>
-            <div className="relative h-64 md:h-96">
+            <div className="relative h-64 md:h-96 mb-6">
               <TeaRetinaAnimation />
             </div>
           </div>
@@ -313,9 +143,17 @@ export default function HomePage() {
                 <Image src="/images/team-teaai.jpg" alt="Pekoe Team" width={500} height={300} className="rounded-lg shadow-lg" />
               </div>
               <GradientBorder>
-                <p className="text-xl text-gray-600 text-center">
-                  We aim  to revolutionize the Tea Industry with AI and other cutting-edge technologies. We understand the challenges and committed to finding solutions that will make the industry more efficient, productive, and profitable.
+                <p className="text-xl text-gray-600 text-center mb-8">
+                  We aim to revolutionize the Tea Industry with AI and other cutting-edge technologies. We understand the challenges and are committed to finding solutions that will make the industry more efficient, productive, and profitable.
                 </p>
+                <div className="flex justify-center">
+                  <Link
+                    href="/who-we-are"
+                    className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium py-2 px-6 rounded-full text-base transition-all duration-500 ease-in-out hover:from-blue-600 hover:to-purple-600"
+                  >
+                    Discover Our Story
+                  </Link>
+                </div>
               </GradientBorder>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -380,20 +218,6 @@ export default function HomePage() {
                   <p className="text-gray-600">TeaAI™&apos;s Export Market Reports allows the traders to download the publicly released Weekly Broker Market Reports from a central location.</p>
                 </GradientBorder>
               </div>
-              {/* <div className="mt-8">
-                <GradientBorder>
-                  <h4 className="text-xl font-semibold mb-4">Price History and Heat Map</h4>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <LineChart data={priceData}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Line type="monotone" dataKey="price" stroke="#8884d8" activeDot={{ r: 8 }} />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </GradientBorder>
-              </div> */}
             </div>
 
             {/* TeaTalk */}
@@ -490,59 +314,6 @@ export default function HomePage() {
           </div>
         </section>
       </AnimatedSection>
-
-      {/* Footer */}
-      <footer className="bg-green-500 text-white py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Follow us</h3>
-              <div className="flex space-x-4">
-                <Link href="#"><Facebook /></Link>
-                <Link href="#"><Youtube /></Link>
-                <Link href="#"><Linkedin /></Link>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Site Map</h3>
-              <ul className="space-y-2">
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/who-we-are">Who We Are</Link></li>
-                <li><Link href="/solutions">Solutions</Link></li>
-                <li><Link href="/technology">Technology</Link></li>
-                <li><Link href="/reach-us">Reach Us</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Products</h3>
-              <ul className="space-y-2">
-                <li><Link href="/products/tea-retina">TeaRetina™</Link></li>
-                <li><Link href="/products/tea-fence">TeaFence™</Link></li>
-              </ul>
-            </div>
-          </div>
-          {/* <div className="mt-8">
-                        <h3 className="text-lg font-semibold mb-4">Get in Touch with Updates and News</h3>
-                        <form className="flex">
-                            <input type="email" placeholder="Email" className="flex-grow px-4 py-2 rounded-l-md focus:outline-none" />
-                            <input type="text" placeholder="Name" className="px-4 py-2 focus:outline-none" />
-                            <button type="submit" className="bg-white text-green-500 px-4 py-2 rounded-r-md font-medium hover:bg-gray-100 transition-colors">Sign Up</button>
-                        </form>
-                        <p className="mt-2 text-sm">By signing up you will be accepting Pekoe's Terms and Conditions and acknowledge that my information will be used in accordance with Pekoe's Privacy Policy</p>
-                    </div> */}
-          <div className="mt-8 pt-8 border-t border-green-400">
-            <div className="flex justify-between items-center">
-              <Image src="/images/TEAAI-WHITE.svg" alt="Pekoe Logo" width={150} height={40} />
-              <div className="text-sm">
-                <Link href="/privacy-policy" className="mr-4">Privacy Policy</Link>
-                <Link href="/cookie-policy" className="mr-4">Cookie Policy</Link>
-                <Link href="/terms-of-use">Terms of Use</Link>
-              </div>
-            </div>
-            <p className="mt-4 text-sm text-center">Copyright © 2024 Pekoe. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
 
       <style jsx>{`
         @keyframes gradientAnimation {
