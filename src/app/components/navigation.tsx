@@ -6,7 +6,6 @@ import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 
 const navItems = [
-    { href: '/', label: 'Home' },
     { href: '/who-we-are', label: 'Who We Are' },
     { href: '/solutions', label: 'Solutions' },
     { href: '/reach-us', label: 'Reach Us' },
@@ -23,7 +22,10 @@ export default function Navigation() {
                         <Link href="/" className="flex-shrink-0">
                             <Image src="/images/TEAAI-DARK.svg" alt="Pekoe Logo" width={120} height={100} className="w-auto h-8 sm:h-10" />
                         </Link>
-                        <div className="hidden md:ml-6 md:flex md:space-x-4">
+
+                    </div>
+                    <div className="flex items-center">
+                        <div className="hidden md:ml-6 md:flex md:space-x-4 mr-4">
                             {navItems.map((item) => (
                                 <Link
                                     key={item.href}
@@ -34,8 +36,6 @@ export default function Navigation() {
                                 </Link>
                             ))}
                         </div>
-                    </div>
-                    <div className="flex items-center">
                         <Link
                             href="/get-started"
                             className="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
