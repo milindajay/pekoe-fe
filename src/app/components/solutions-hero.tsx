@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import TeaRetinaAnimation from '../components/TeaRetinaAnimation'
+import TeaRetinaAnimation from './TeaRetinaAnimation'
 
 export function SolutionsHero() {
     return (

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { FileText, PenToolIcon as Tool, Mail, MapPin } from 'lucide-react'
 import { GradientBorder } from './GradientBorder'
 

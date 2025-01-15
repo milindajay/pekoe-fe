@@ -1,9 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { CheckCircle, BarChart2, Clock, DollarSign, LineChart } from 'lucide-react'
-import { GradientBorder } from '../components/GradientBorder'
+import { GradientBorder } from './GradientBorder'
 const benefits = [
     {
         icon: CheckCircle,
