@@ -6,9 +6,9 @@ import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 
 const navItems = [
+    { href: '/', label: 'Home' },
     { href: '/who-we-are', label: 'Who We Are' },
     { href: '/solutions', label: 'Solutions' },
-    { href: '/reach-us', label: 'Reach Us' },
 ]
 
 export default function Navigation() {
@@ -37,10 +37,10 @@ export default function Navigation() {
                             ))}
                         </div>
                         <Link
-                            href="/get-started"
+                            href="/reach-us"
                             className="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
                         >
-                            Get Started
+                            Reach Us
                         </Link>
                         <button
                             type="button"
@@ -71,10 +71,10 @@ export default function Navigation() {
                         </Link>
                     ))}
                     <Link
-                        href="/get-started"
+                        href="/reach-us"
                         className="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
                     >
-                        Get Started
+                        Reach Us
                     </Link>
                 </div>
             </div>
