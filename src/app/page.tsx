@@ -180,13 +180,12 @@ export default function HomePage() {
 
       {/* TeaBrain AI Section */}
       <AnimatedSection>
-        <section className="py-20 bg-gray-100">
+        <section className="py-20 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Discover TeaAI™</h2>
-
+            <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-[#8D4CC2] to-[#009AFF] text-transparent bg-clip-text mx-auto w-1/3">Discover TeaAI™</h2>
             {/* Tea Mate */}
             <div className="mb-16">
-              <h3 className="text-2xl font-semibold mb-6">TeaMate: Visualize the Entire Sri Lankan Tea Lanscape </h3>
+              <h3 className="text-2xl text-green-500 text-center font-semibold mb-6">TeaMate: Visualize the Entire Sri Lankan Tea Lanscape </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <GradientBorder>
                   <AnimatedIcon Icon={ChartCandlestick} />
@@ -223,7 +222,7 @@ export default function HomePage() {
 
             {/* TeaTalk */}
             <div className="mb-16">
-              <h3 className="text-2xl font-semibold mb-6">TeaTalk: AI-Powered Voice Recognition for Tea Tasting</h3>
+              <h3 className="text-2xl text-green-500 text-center font-semibold mb-6">TeaTalk: AI-Powered Voice Recognition for Tea Tasting</h3>
               <GradientBorder>
                 <div className="flex items-center mb-4">
                   <AnimatedIcon Icon={Mic} />
@@ -241,7 +240,7 @@ export default function HomePage() {
 
             {/* TeaRetina */}
             <div className='mb-16'>
-              <h3 className="text-2xl font-semibold mb-6">TeaRetina: AI-Based Tea Visual Grading</h3>
+              <h3 className="text-2xl text-green-500 text-center font-semibold mb-6">TeaRetina: AI-Based Tea Visual Grading</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <GradientBorder>
                   <AnimatedIcon Icon={Focus} />
@@ -263,7 +262,7 @@ export default function HomePage() {
 
             {/* TeaFence */}
             <div>
-              <h3 className="text-2xl font-semibold mb-6">TeaFence: Industry Leading Customer Data Privacy</h3>
+              <h3 className="text-2xl text-green-500 text-center font-semibold mb-6">TeaFence: Industry Leading Customer Data Privacy</h3>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <TeaFenceAnimation />
               </div>
