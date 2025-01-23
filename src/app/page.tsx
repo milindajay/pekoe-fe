@@ -26,6 +26,7 @@ import {
 import TeaRetinaAnimation from "./components/TeaRetinaAnimation"
 import { TeaFenceAnimation } from "./components/TeaFenceAnimation"
 import { FeatureCard } from "./components/FeatureCard"
+import { TeaRetinaCard } from "./components/TeaRetinaCard"
 
 const GradientBorder = ({ children }: { children: React.ReactNode }) => (
   <motion.div
@@ -296,23 +297,20 @@ export default function HomePage() {
                 TeaRetina: AI-Based Tea Visual Grading
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <FeatureCard
+                <TeaRetinaCard
                   icon={Focus}
                   title="Capture Standards"
                   description="TeaRetina allows you to scan and digitize your tea standards to be matched with auction samples. TeaAI™ has absolutely no access to your standards thanks to our industry leading privacy architecture."
-                  screenshotSrc="/images/capture-standards-screenshot.jpg"
                 />
-                <FeatureCard
+                <TeaRetinaCard
                   icon={ListChecks}
                   title="Manage Standards"
                   description="TeaRetina allows you to easily manage and update your tea grading standards, enabling quick edits or deletions of captured standards to keep your quality criteria current and well-organized."
-                  screenshotSrc="/images/manage-standards-screenshot.jpg"
                 />
-                <FeatureCard
+                <TeaRetinaCard
                   icon={GitCompareArrows}
                   title="Match Standards"
                   description="TeaRetina's State-of-the-Art AI system allows tea traders to match all of the scanned standards with all 10,000+ weekly auction samples with a simple button click. It's an Absolute Game Changer!!!"
-                  screenshotSrc="/images/match-standards-screenshot.jpg"
                 />
               </div>
             </div>
