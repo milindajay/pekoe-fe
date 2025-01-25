@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
 import Navigation from './components/navigation'
 import Footer from './components/footer'
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Navigation />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   )
