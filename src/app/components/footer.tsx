@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Facebook, Youtube, Linkedin } from 'lucide-react'
+import { SlSocialFacebook, SlSocialYoutube, SlSocialLinkedin } from 'react-icons/sl';
+import { Phone, Mail, MapPin } from 'lucide-react'
 
 export default function Footer() {
     return (
@@ -11,13 +12,13 @@ export default function Footer() {
                         <h3 className="text-lg font-semibold mb-4">Follow us</h3>
                         <div className="flex space-x-4">
                             <Link href="#" aria-label="Facebook">
-                                <Facebook className="w-6 h-6" />
+                                <SlSocialFacebook className="w-6 h-6" />
                             </Link>
                             <Link href="#" aria-label="Youtube">
-                                <Youtube className="w-6 h-6" />
+                                <SlSocialYoutube className="w-6 h-6" />
                             </Link>
                             <Link href="#" aria-label="LinkedIn">
-                                <Linkedin className="w-6 h-6" />
+                                <SlSocialLinkedin className="w-6 h-6" />
                             </Link>
                         </div>
                     </div>
@@ -27,16 +28,92 @@ export default function Footer() {
                             <li><Link href="/" className="hover:underline">Home</Link></li>
                             <li><Link href="/who-we-are" className="hover:underline">Who We Are</Link></li>
                             <li><Link href="/solutions" className="hover:underline">Solutions</Link></li>
-                            <li><Link href="/technology" className="hover:underline">Technology</Link></li>
                             <li><Link href="/reach-us" className="hover:underline">Reach Us</Link></li>
                         </ul>
                     </div>
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">Products</h3>
-                        <ul className="space-y-2">
-                            <li><Link href="/products/tea-retina" className="hover:underline">TeaRetina™</Link></li>
-                            <li><Link href="/products/tea-fence" className="hover:underline">TeaFence™</Link></li>
-                        </ul>
+                        <h3 className="text-lg font-semibold mb-4">Get in Touch</h3>
+                        <div className='space-y-4'>
+                            <div className="space-x-2 space-y-2 flex-col">
+                                <p className='text-md font-semibold mb-4'>Singapore Head office</p>
+                                <div className="flex items-start space-x-2 hover:text-black">
+                                    <MapPin className="text-lg flex-shrink-0 mt-1" />
+                                    <ul className="space-y-2">
+                                        <li className="list-none">
+                                            <Link
+                                                href="https://maps.app.goo.gl/trTswDTHfswJ8FRq8"
+                                                aria-label="Location"
+                                                target='_blank'
+                                            >
+                                                14 Kung Chong Rd, #05-01 Lum Chang Building Singapore 159150
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="flex items-start space-x-2 hover:text-black">
+                                    <Phone className="text-lg flex-shrink-0" />
+                                    <ul className="space-y-2">
+                                        <li className="list-none">
+                                            <Link
+                                                href="tel:+6564738878"
+                                                aria-label="Phone"
+                                                target='_blank'
+                                            >
+                                                +65 6473-8878
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="space-x-2 space-y-2 flex-col">
+                                <p className='text-md font-semibold mb-4'>Sri Lanka Office</p>
+                                <div className="flex items-start space-x-2 hover:text-black">
+                                    <MapPin className="text-lg flex-shrink-0 mt-1" />
+                                    <ul className="space-y-2">
+                                        <li className="list-none">
+                                            <Link
+                                                href="https://maps.app.goo.gl/n6Ffm8ZQXMZcLqjA7"
+                                                aria-label="Location"
+                                                target='_blank'
+                                            >
+                                                47/1 Jawatta Rd, Colombo 00500
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="flex items-start space-x-2 hover:text-black">
+                                    <Phone className="text-lg flex-shrink-0" />
+                                    <ul className="space-y-2">
+                                        <li className="list-none">
+                                            <Link
+                                                href="tel:+94711127241"
+                                                aria-label="Phone"
+                                                target='_blank'
+                                            >
+                                                +94 71 11 27 241
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="space-x-2 space-y-2 flex-col">
+                                <p className='text-md font-semibold mb-4'>Send us an email</p>
+                                <div className="flex items-center space-x-2 hover:text-black">
+                                    <Mail className="text-lg flex-shrink-0" />
+                                    <ul className="space-y-2">
+                                        <li className="list-none">
+                                            <Link
+                                                href="mailto:info@pekoe.ai"
+                                                aria-label="Email"
+                                                target='_blank'
+                                            >
+                                                info@pekoe.ai
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {/* Uncomment the following section if you want to include the newsletter signup form */}
